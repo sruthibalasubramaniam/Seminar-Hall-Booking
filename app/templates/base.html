@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Help Desk{% endblock %}</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-image: url("https://i.pinimg.com/564x/49/c7/b5/49c7b5cc8094b024906fb7ca5ef9dff6.jpg"); background-size: cover; }
+        section { background-color: rgba(254,251,242,0.951); padding: 20px; border-radius: 5px; margin: 20px auto; max-width: 800px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .nav-box ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 15px; }
+        .nav-box li { display: inline; }
+        .nav-box a { text-decoration: none; color: #fff; background-color: #d39a2f; padding: 8px 12px; border-radius: 5px; }
+        .nav-box a:hover { background-color: #ce791d; }
+    </style>
+</head>
+<body>
+<header>
+    <div class="box" style="text-align:center;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Sri_Sivasubramaniya_Nadar_College_of_Engineering.svg/800px-Sri_Sivasubramaniya_Nadar_College_of_Engineering.svg.png" alt="SSN College of Engineering" style="max-width:5%;">
+        <h1>HELP DESK</h1>
+    </div>
+</header>
+
+<nav>
+    <div class="nav-box">
+        <ul>
+            <li><a href="{{ url_for('main.home') }}">Home</a></li>
+            <li><a href="{{ url_for('main.halls') }}">Seminar Halls</a></li>
+
+            {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('main.my_bookings') }}">My Bookings</a></li>
+                <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+            {% else %}
+                <li><a href="{{ url_for('auth.login') }}">Sign in</a></li>
+                <li><a href="{{ url_for('auth.signup') }}">Sign up</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+{% block content %}{% endblock %}
+</body>
+</html>

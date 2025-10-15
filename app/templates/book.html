@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Seminar Hall</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-image: url("https://i.pinimg.com/564x/49/c7/b5/49c7b5cc8094b024906fb7ca5ef9dff6.jpg"); background-size: cover; }
+        section { background-color: rgba(254,251,242,0.951); padding: 20px; border-radius: 5px; margin: 40px auto; max-width: 500px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        form { display: flex; flex-direction: column; }
+        label { margin-bottom: 5px; font-weight: bold; }
+        input, select { margin-bottom: 15px; padding: 10px; border-radius: 5px; border: 1px solid #ccc; }
+        button { background-color: #041060; color: #fff; padding: 10px; border-radius: 5px; border: none; cursor: pointer; }
+        button:hover { background-color: #062a61; }
+    </style>
+</head>
+<body>
+<header>
+    <div class="box">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Sri_Sivasubramaniya_Nadar_College_of_Engineering.svg/800px-Sri_Sivasubramaniya_Nadar_College_of_Engineering.svg.png" alt="SSN College of Engineering" style="max-width:5%;">
+        <h1>HELP DESK</h1>
+    </div>
+</header>
+
+<nav>
+    <div class="nav-box">
+        <ul>
+            <li><a href="{{ url_for('main.home') }}" class="button">Home</a></li>
+            <li><a href="{{ url_for('main.halls') }}" class="button">Seminar Halls</a></li>
+            <li><a href="{{ url_for('main.book') }}" class="button">Book Hall</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section>
+    <h2>Request Booking</h2>
+    <form method="POST">
+        <label for="hall">Select Hall</label>
+        <select name="hall_id" required>
+            {% for hall in halls %}
+            <option value="{{ hall.id }}">{{ hall.name }} (Capacity: {{ hall.capacity }})</option>
+            {% endfor %}
+        </select>
+
+        <label for="date">Date</label>
+        <input type="date" name="date" required>
+
+        <label for="start_time">Start Time</label>
+        <input type="time" name="start_time" required>
+
+        <label for="end_time">End Time</label>
+        <input type="time" name="end_time" required>
+
+        <button type="submit">Submit Booking</button>
+    </form>
+</section>
+</body>
+</html>
